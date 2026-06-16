@@ -39,12 +39,60 @@ if ('IntersectionObserver' in window) {
   reveals.forEach((el) => el.classList.add('is-visible'));
 }
 
-// ===== Waitlist form (front-end only — no backend yet) =====
+// ===== Waitlist form (saves emails to Supabase) =====
 const form = document.getElementById('waitlistForm');
 const note = document.getElementById('formNote');
 
-form?.addEventListener('submit', (e) => {
+const showNote = (text, isError = false) => {
+  if (!note) return;
+  note.textContent = text;
+  note.classList.toggle('cta__note--error', isError);
+  note.hidden = false;
+};
+
+form?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  form.reset();
-  if (note) note.hidden = false;
+
+  const cfg = window.SPELLY_CONFIG || {};
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const email = form.querySelector('input[name="email"]').value.trim();
+  if (!email) return;
+
+  if (!cfg.SUPABASE_URL || cfg.SUPABASE_URL.includes('YOUR-PROJECT')) {
+    showNote('Signups are not configured yet.', true);
+    return;
+  }
+
+  submitBtn.disabled = true;
+
+  try {
+    const res = await fetch(`${cfg.SUPABASE_URL}/rest/v1/subscribers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: cfg.SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${cfg.SUPABASE_ANON_KEY}`,
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify({
+        email,
+        source: 'waitlist',
+        referrer: document.referrer || null,
+      }),
+    });
+
+    // 409 = email already on the list (unique constraint) — treat as success.
+    if (res.ok || res.status === 409) {
+      form.reset();
+      showNote("You're on the list. We'll be in touch ✦");
+    } else {
+      console.error('Subscribe failed:', res.status, await res.text());
+      showNote('Something went wrong. Please try again.', true);
+    }
+  } catch (err) {
+    console.error(err);
+    showNote('Network error. Please try again.', true);
+  } finally {
+    submitBtn.disabled = false;
+  }
 });
