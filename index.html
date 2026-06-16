@@ -24,11 +24,32 @@
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Google Analytics 4 — replace G-XJ9HLSKZL2 with your Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJ9HLSKZL2"></script>
+  <!-- Google Analytics 4 + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    // Deny all storage by default until the visitor chooses (required for EEA).
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    // Honor a choice made on a previous visit immediately.
+    try {
+      if (localStorage.getItem('spelly_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJ9HLSKZL2"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-XJ9HLSKZL2');
   </script>
@@ -120,6 +141,15 @@
       </div>
     </section>
   </main>
+
+  <!-- ===================== COOKIE CONSENT ===================== -->
+  <div class="cookie" id="cookieBanner" hidden role="dialog" aria-label="Cookie consent">
+    <p class="cookie__text">We use analytics cookies to understand how visitors use Spelly. You can accept or decline.</p>
+    <div class="cookie__actions">
+      <button class="cookie__btn cookie__btn--ghost" id="cookieDecline">Decline</button>
+      <button class="btn btn--primary cookie__btn" id="cookieAccept">Accept</button>
+    </div>
+  </div>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
