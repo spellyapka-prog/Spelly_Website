@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | Spelly</title>
+  <title>Spelly — Your tarot cards, read by AI</title>
   <meta name="description" content="AI tarot readings from your real cards. Scan your spread, ask a question, and receive a clear interpretation powered by Spelly." />
-  <link rel="icon" type="image/png" href="assets/icon.png" />
+
+  <!-- icons -->
+  <link rel="icon" type="image/png" href="materials/Logo%20icon%20for%20web.png" />
+  <link rel="apple-touch-icon" href="materials/icon%20for%20google%20ads.png" />
+
+  <!-- social / open graph -->
+  <meta property="og:title" content="Spelly — Your tarot cards, read by AI" />
+  <meta property="og:description" content="Ask. Scan. Read. AI tarot readings from your real cards." />
+  <meta property="og:image" content="materials/Splash%20screen.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..800;1,14..32,400..700&family=Fragment+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -16,11 +29,11 @@
   <header class="nav" id="top">
     <div class="container nav__inner">
       <a class="nav__logo" href="#top" aria-label="Spelly home">
-        <img src="assets/logo.svg" alt="Spelly" />
+        <img src="materials/logo.svg" alt="Spelly" />
       </a>
 
       <nav class="nav__links" aria-label="Primary">
-        <a class="btn btn--ghost" href="#waitlist">Join the waitlist</a>
+        <a class="nav__link" href="#waitlist">Join the waitlist <span class="arrow">→</span></a>
       </nav>
 
       <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
@@ -29,103 +42,79 @@
     </div>
 
     <div class="nav__mobile" id="mobileMenu">
-      <a href="#waitlist" class="btn btn--primary btn--block">Join the waitlist <svg class="ico-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg></a>
+      <a href="#waitlist" class="btn btn--primary btn--block">Join the waitlist
+        <svg class="ico-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+      </a>
     </div>
   </header>
 
   <main>
     <!-- ===================== HERO ===================== -->
     <section class="hero">
-      <!-- floating blurred tarot cards -->
-      <div class="hero__cards" aria-hidden="true">
-        <img class="float-card fc-1" src="assets/cards/fool.png" alt="" />
-        <img class="float-card fc-2" src="assets/cards/wheel.png" alt="" />
-        <img class="float-card fc-3" src="assets/cards/magician.png" alt="" />
-        <img class="float-card fc-4" src="assets/cards/sun.png" alt="" />
-        <img class="float-card fc-5" src="assets/cards/moon.png" alt="" />
-        <img class="float-card fc-6" src="assets/cards/star.png" alt="" />
+      <!-- decor: radial glow, scattered tarot cards, big logo-style sparkles (hero only) -->
+      <div class="hero__decor" aria-hidden="true">
+        <div class="hero__glow"></div>
+
+        <img class="bg-card bgc-1" src="materials/cards/The%20Fool.png" alt="" />
+        <img class="bg-card bgc-2" src="materials/cards/Wheel%20of%20Fortune.png" alt="" />
+        <img class="bg-card bgc-3" src="materials/cards/the%20star.png" alt="" />
+        <img class="bg-card bgc-4" src="materials/cards/the%20moon.png" alt="" />
+        <img class="bg-card bgc-5" src="materials/cards/the%20sun.png" alt="" />
+
+        <svg class="spark sp-1" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-2" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-3" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-4" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-5" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-6" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-7" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
       </div>
-      <div class="stars" aria-hidden="true"></div>
 
       <div class="container hero__inner">
-        <a class="eyebrow" href="#waitlist">
-          <span>AI</span><i></i><span>TAROT SCANNING</span><i></i><span>COMING SOON</span>
-        </a>
-        <h1 class="hero__title">Your tarot cards,<br />read by AI</h1>
-        <p class="hero__subtitle">Ask. Scan. Read.</p>
-        <a class="btn btn--primary btn--lg" href="#waitlist">
+        <p class="eyebrow reveal">
+          <span>AI TAROT SCANNING</span><i></i><span>COMING SOON</span>
+        </p>
+        <h1 class="hero__title reveal" data-d="1">Your tarot cards,<br />read by AI</h1>
+        <p class="hero__subtitle reveal" data-d="2">Ask. Scan. Read.</p>
+        <a class="btn btn--primary btn--lg reveal" data-d="3" href="#waitlist">
           Join the waitlist
           <svg class="ico-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
         </a>
 
-        <div class="phone phone--hero">
-          <div class="phone__frame">
-            <span class="phone__island"></span>
-            <img class="phone__screen" src="assets/app-home.png" alt="Spelly app — focus on your question" />
-          </div>
+        <div class="phone phone--hero reveal" data-d="4">
+          <img class="phone__img" src="materials/screen-bevel@3x.png" alt="Spelly app — focus on your question, the cards will do the rest" />
         </div>
       </div>
     </section>
 
-    <!-- ===================== SPREAD TEXT ===================== -->
+    <!-- ===================== SPREAD / FEATURE ===================== -->
     <section class="spread">
       <div class="container spread__inner">
-        <h2 class="spread__title">Spelly reads the spread,<br class="br-d" /> not just the cards.</h2>
-        <p class="spread__text">Spelly scans your real tarot cards, recognizes the spread, and turns it into a clear AI reading based on your question.</p>
+        <h2 class="spread__title reveal">Spelly reads the spread,<br class="br-d" /> not just the cards.</h2>
+        <p class="spread__text reveal" data-d="1">Spelly scans your real tarot cards, recognizes the spread, and turns it into a clear AI reading based on your question.</p>
       </div>
-    </section>
 
-    <!-- ===================== SHOWCASE ===================== -->
-    <section class="showcase">
-      <div class="container showcase__inner">
+      <div class="container showcase">
+        <div class="showcase__stage">
+          <!-- floating glass annotation cards (exported from Framer) -->
+          <img class="anno anno--question float-slow reveal" src="materials/Card_1_2.svg" alt="Your question — what is this teaching me?" />
+          <img class="anno anno--cards float-slow reveal" data-d="1" src="materials/card_3_2.svg" alt="Cards recognized — The Lovers, The Tower, The Star" />
+          <img class="anno anno--reading float-slow reveal" data-d="2" src="materials/Card_2_2.svg" alt="AI reading" />
 
-        <!-- annotation: your question -->
-        <article class="anno anno--question">
-          <header class="anno__head"><span class="step">1</span> Your question</header>
-          <div class="anno__pill">
-            <svg class="ico-star sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
-            What is this teaching me?
-          </div>
-        </article>
-
-        <!-- phone: camera scanning -->
-        <div class="phone phone--showcase">
-          <div class="phone__frame">
-            <span class="phone__island"></span>
-            <img class="phone__screen" src="assets/app-camera.png" alt="Spelly app — scanning a tarot spread" />
+          <!-- phone: camera scanning a spread -->
+          <div class="phone phone--showcase reveal">
+            <img class="phone__img" src="materials/phone_2.png" alt="Spelly app — scanning a tarot spread" />
           </div>
         </div>
-
-        <!-- annotation: cards recognized -->
-        <article class="anno anno--cards">
-          <header class="anno__head"><span class="step">2</span> Cards recognized</header>
-          <div class="anno__cards">
-            <figure><img src="assets/cards/lovers.png" alt="The Lovers" /><figcaption>The Lovers</figcaption></figure>
-            <figure><img src="assets/cards/tower.png" alt="The Tower" /><figcaption>The Tower</figcaption></figure>
-            <figure><img src="assets/cards/star.png" alt="The Star" /><figcaption>The Star</figcaption></figure>
-          </div>
-        </article>
-
-        <!-- annotation: ai reading -->
-        <article class="anno anno--reading">
-          <header class="anno__head"><span class="step">3</span> AI reading</header>
-          <div class="anno__chips">
-            <span class="chip"><svg viewBox="0 0 24 32" aria-hidden="true"><rect x="2" y="2" width="20" height="28" rx="4"/></svg>The Lovers</span>
-            <span class="chip"><svg viewBox="0 0 24 32" aria-hidden="true"><rect x="2" y="2" width="20" height="28" rx="4"/></svg>The Tower</span>
-            <span class="chip"><svg viewBox="0 0 24 32" aria-hidden="true"><rect x="2" y="2" width="20" height="28" rx="4"/></svg>The Star</span>
-          </div>
-          <p class="anno__reading">This spread points to a truth that wants to surface. The connection may feel intense, but it is here to show what needs honesty, release, and healing.</p>
-        </article>
-
       </div>
     </section>
 
     <!-- ===================== WAITLIST / CTA ===================== -->
     <section class="cta" id="waitlist">
       <div class="container cta__inner">
-        <h2 class="cta__title">Read your cards with AI.</h2>
-        <p class="cta__text">Be the first to scan a spread. Join the waitlist and get early access to Spelly.</p>
-        <form class="cta__form" id="waitlistForm">
+        <h2 class="cta__title reveal">Read your cards with AI.</h2>
+        <p class="cta__text reveal" data-d="1">Be the first to scan a spread. Join the waitlist and get early access to Spelly.</p>
+        <form class="cta__form reveal" data-d="2" id="waitlistForm">
           <input type="email" name="email" placeholder="Enter your email" required aria-label="Email" />
           <button type="submit" class="btn btn--primary btn--lg">
             Join the waitlist
@@ -140,7 +129,7 @@
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
     <div class="container footer__inner">
-      <a class="footer__logo" href="#top" aria-label="Spelly"><img src="assets/logo.svg" alt="Spelly" /></a>
+      <a class="footer__logo" href="#top" aria-label="Spelly"><img src="materials/logo.svg" alt="Spelly" /></a>
       <p class="footer__copy">© 2026 Spelly. Ask. Scan. Read.</p>
     </div>
   </footer>
