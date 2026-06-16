@@ -39,24 +39,26 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
    ellipse centred at 50% 100% → bottom half is clipped by the box, top half radiates up the page. */
 .hero__glow{
   position:absolute;left:50%;bottom:0;transform:translateX(-50%);
-  width:min(1320px,180%);height:64%;
+  width:min(1584px,216%);height:77%;
   background:radial-gradient(ellipse 50% 100% at 50% 100%,
     rgba(129,93,239,.92) 0%, rgba(129,93,239,.5) 32%, rgba(129,93,239,.15) 58%, rgba(129,93,239,0) 80%);
 }
 
 /* scattered tarot cards — varied size & blur, static */
 .bg-card{
-  position:absolute;border-radius:12px;
-  box-shadow:0 26px 50px -18px rgba(0,0,0,.6);
+  position:absolute;border-radius:12px;z-index:2;
 }
-.bgc-1{width:120px;top:33%;left:14%;transform:rotate(-14deg);filter:blur(2px);opacity:.92}
-.bgc-2{width:154px;top:56%;left:19%;transform:rotate(7deg);filter:blur(1px);opacity:.96}
-.bgc-3{width:104px;top:30%;right:14%;transform:rotate(12deg);filter:blur(5px);opacity:.7}
-.bgc-4{width:88px;top:50%;left:7%;transform:rotate(-9deg);filter:blur(7px);opacity:.5}
-.bgc-5{width:158px;top:58%;right:11%;transform:rotate(-10deg);filter:blur(1.5px);opacity:.96}
+/* fixed widths (no growth); positions anchored to the page centre with a small vw term
+   so the gap to the phone gently stretches/contracts with the viewport (not strongly) */
+.bgc-1{width:108px;top:33%;left:calc(50% - 410px - 6vw);transform:rotate(-14deg);filter:blur(2px);opacity:.92}
+.bgc-2{width:138px;top:64%;left:calc(50% - 345px - 6vw);transform:rotate(7deg);filter:blur(3px);opacity:.96}
+.bgc-3{width:94px;top:30%;right:calc(50% - 410px - 6vw);transform:rotate(12deg);filter:blur(5px);opacity:.7}
+.bgc-4{width:79px;top:50%;left:calc(50% - 495px - 6vw);transform:rotate(-9deg);filter:blur(7px);opacity:.5}
+.bgc-5{width:142px;top:58%;right:calc(50% - 390px - 6vw);transform:rotate(-10deg);filter:blur(1.5px);opacity:.96}
 
-/* logo-style 4-point sparkles — large, random, some blurred */
-.spark{position:absolute;fill:#faf9f6;filter:drop-shadow(0 0 9px rgba(255,255,255,.5))}
+/* logo-style 4-point sparkles — large, random, some blurred. z-index:1 keeps them
+   BEHIND the cards (z-index:2) so a sparkle never sits on top of a card */
+.spark{position:absolute;fill:#faf9f6;z-index:1}
 .sp-1{width:34px;top:40%;left:11%;transform:rotate(8deg)}
 .sp-2{width:18px;top:33%;right:30%;filter:blur(1.5px);opacity:.8}
 .sp-3{width:42px;top:85%;right:12%}
@@ -64,6 +66,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .sp-5{width:24px;top:27%;right:21%;filter:blur(2px);opacity:.6}
 .sp-6{width:13px;top:23%;left:33%;opacity:.6}
 .sp-7{width:28px;top:55%;right:5%;transform:rotate(-6deg)}
+/* extra small blurred background sparkles */
+.sp-8{width:11px;top:18%;left:43%;filter:blur(1.2px);opacity:.5;transform:rotate(12deg)}
+.sp-9{width:9px;top:79%;left:39%;filter:blur(1.5px);opacity:.45}
+.sp-10{width:13px;top:14%;right:37%;filter:blur(1.4px);opacity:.5;transform:rotate(-8deg)}
+.sp-11{width:8px;top:90%;left:52%;filter:blur(2px);opacity:.4}
+.sp-12{width:12px;top:47%;right:34%;filter:blur(1.3px);opacity:.5;transform:rotate(6deg)}
 
 /* ===================== BUTTONS ===================== */
 .btn{
@@ -74,7 +82,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 }
 .btn--primary{
   background:var(--purple);color:#fff;padding:14px 24px;
-  box-shadow:0 12px 30px -10px rgba(124,92,245,.7);
 }
 .btn--primary:hover{background:var(--purple-h);transform:translateY(-2px);box-shadow:0 18px 38px -10px rgba(124,92,245,.85)}
 .btn--lg{padding:16px 28px;font-size:16px}
@@ -93,7 +100,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   border-bottom-color:var(--line);
 }
 .nav__inner{display:flex;align-items:center;justify-content:center;height:var(--nav-h)}
-.nav__logo img{height:37px;width:auto}
+.nav__logo img{height:44.4px;width:auto}
 .nav__link{font-size:14px;font-weight:600;color:var(--cream);display:inline-flex;align-items:center;gap:7px;transition:opacity .2s ease}
 .nav__link .arrow{transition:transform .2s ease}
 .nav__link:hover{opacity:.85}
@@ -127,6 +134,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   font-size:clamp(36px,6.4vw,66px);
   font-weight:700;line-height:1.04;letter-spacing:-.025em;color:#fff;
 }
+.br-m{display:none} /* mobile-only line break */
 .hero__subtitle{
   margin-top:18px;font-size:clamp(16px,2vw,20px);
   font-weight:500;color:var(--lilac);
@@ -143,7 +151,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
 /* ===================== SPREAD / FEATURE ===================== */
 .spread{padding:160px 0 0;text-align:center;position:relative}
-.spread__inner{max-width:760px;margin-inline:auto}
+/* wide enough that the forced-break first line ("…not just the") fits on one line
+   → title renders as a clean 2 lines on desktop instead of wrapping to 3 */
+.spread__inner{max-width:1100px;margin-inline:auto}
 .spread__title{
   font-size:clamp(28px,4.6vw,48px);font-weight:700;
   line-height:1.1;letter-spacing:-.025em;color:#fff;
@@ -160,15 +170,33 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   max-width:920px;margin-inline:auto;min-height:760px;
 }
 .phone--showcase{width:min(300px,72vw);position:relative;z-index:2}
+.phone--showcase .phone__img{filter:none}
 
-/* floating glass annotation cards */
-.anno{
-  width:auto;
+/* floating annotation cards: glass background (_2) + content on top (_1) */
+.anno{display:block}
+/* show instantly with NO entrance animation — any transform/opacity timing on this
+   container makes the child glass's backdrop-filter paint a frame late (glass pops in) */
+.anno.reveal{opacity:1;transform:none;transition:none}
+.anno__fg{
+  position:relative;z-index:1;width:100%;display:block;
   filter:drop-shadow(0 24px 50px rgba(0,0,0,.4));
 }
-.anno--question{position:absolute;z-index:3;width:300px;top:60px;left:-6px}
-.anno--cards{position:absolute;z-index:4;width:360px;bottom:70px;left:-30px}
-.anno--reading{position:absolute;z-index:3;width:320px;top:210px;right:-24px}
+/* real frosted-glass plate, reproduces the _2 svg (cream 10% fill + cream border) */
+.anno__glass{
+  position:absolute;left:0;right:0;bottom:0;z-index:0;
+  border-radius:16px;
+  background:rgba(250,249,246,.07);
+  border:1px solid rgba(250,249,246,.55);
+  backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);
+}
+/* glass height = _2 height ÷ _1 height, bottom-aligned (content peeks above) */
+.anno--question .anno__glass{height:87%}
+.anno--cards .anno__glass{height:93%}
+.anno--reading .anno__glass{height:92.5%}
+
+.anno--question{position:absolute;z-index:3;width:300px;top:60px;left:54px}
+.anno--cards{position:absolute;z-index:4;width:360px;bottom:95px;left:-30px}
+.anno--reading{position:absolute;z-index:3;width:384px;top:210px;right:-24px}
 
 /* ===================== CTA / WAITLIST ===================== */
 .cta{
@@ -207,7 +235,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* ===================== FOOTER ===================== */
 .footer{border-top:1px solid var(--line);padding:36px 0}
 .footer__inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.footer__logo img{height:22px}
+.footer__logo img{height:31.68px}
 .footer__copy{font-size:13px;color:var(--cream-dim)}
 
 /* ===================== ANIMATIONS ===================== */
@@ -220,18 +248,41 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
 /* float uses the `translate` property so it never fights reveal's transform */
 @keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -12px}}
-.float-slow{animation:floaty 8s ease-in-out infinite}
-.anno--cards.float-slow{animation-duration:9s;animation-delay:.6s}
-.anno--reading.float-slow{animation-duration:7.5s;animation-delay:1.1s}
+/* animate the foreground only, NOT the .anno container — the glass plate stays
+   static so its backdrop-filter never recomputes (kills the flicker/lag) */
+.float-slow .anno__fg{animation:floaty 8s ease-in-out infinite}
+.anno--cards.float-slow .anno__fg{animation-duration:9s;animation-delay:.6s}
+.anno--reading.float-slow .anno__fg{animation-duration:7.5s;animation-delay:1.1s}
 
 /* ===================== RESPONSIVE ===================== */
 /* TABLET 810–1199 */
 @media (max-width:1199px){
   .hero__title{font-size:clamp(38px,7.4vw,58px)}
   .showcase__stage{max-width:680px;min-height:700px}
+
+  /* spread title: drop the forced break so it flows naturally — one line on wider
+     tablets, wrapping to two only on the smallest ("mini") tablet widths */
+  .spread__title .br-d{display:none}
+
+  /* keep the original logo size below desktop (the +20% applies on web only) */
+  .nav__logo img{height:37px}
   .anno--question{width:260px;top:40px;left:0}
   .anno--cards{width:310px;bottom:60px;left:-10px}
   .anno--reading{width:280px;top:190px;right:-6px}
+
+  /* cards: tighter offsets from centre so they sit close to the phone
+     (the desktop vw-based gap is too wide at these widths) */
+  .bgc-1{left:calc(50% - 320px)}
+  .bgc-2{left:calc(50% - 345px)}
+  .bgc-3{right:calc(50% - 300px)}
+  .bgc-4{left:calc(50% - 380px)}
+  .bgc-5{right:calc(50% - 350px)}
+
+  /* sparkles: drop the dense center fillers, pull the near-center ones outward */
+  .sp-8,.sp-9,.sp-10,.sp-11,.sp-12{display:none}
+  .sp-2{right:24%}
+  .sp-6{left:25%}
+  .sp-5{right:15%}
 }
 
 /* PHONE ≤809 — centered hero (matches reference), waitlist link + burger in nav */
@@ -246,21 +297,31 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
   .bg-card{width:88px !important;opacity:.5}
   .bgc-4,.bgc-3{display:none}
-  .spark{filter:drop-shadow(0 0 6px rgba(255,255,255,.45))}
+
+  /* sparkles: keep only a few, hug the edges & spread evenly so they don't bunch
+     over the centred title/phone. Blur them more + lower opacity so they read softer. */
+  .sp-4,.sp-6,.sp-8,.sp-9,.sp-10,.sp-11,.sp-12{display:none}
+  .spark{filter:blur(2px);opacity:.5}
   .sp-1,.sp-7{width:22px}
   .sp-3{width:26px}
   .sp-2,.sp-5{width:14px}
+  .sp-1{top:34%;left:6%;right:auto}
+  .sp-2{top:15%;right:9%;left:auto}
+  .sp-3{top:80%;right:7%;left:auto}
+  .sp-5{top:48%;right:6%;left:auto}
+  .sp-7{top:88%;left:13%;right:auto}
 
   .spread{padding:120px 0 0}
   .br-d{display:none}
+  .br-m{display:inline} /* show the line break again on mobile */
 
   /* annotations overlap the phone (matches reference) */
   .showcase{margin-top:44px}
   .showcase__stage{display:block;position:relative;min-height:0;padding:24px 0}
   .phone--showcase{width:min(250px,66vw);margin-inline:auto}
-  .anno{filter:drop-shadow(0 16px 34px rgba(0,0,0,.4))}
-  .anno--question{width:min(232px,62vw);top:4%;left:0}
-  .anno--cards{width:min(272px,72vw);bottom:2%;right:0;left:auto}
+  .anno__fg{filter:drop-shadow(0 16px 34px rgba(0,0,0,.4))} /* shadow on fg, not the container — keeps the glass backdrop-filter working */
+  .anno--question{width:min(232px,62vw);top:4%;left:0;translate:0 10%}
+  .anno--cards{width:min(272px,72vw);bottom:2%;right:0;left:auto;translate:0 -15%}
   .anno--reading{display:none}
 
   .cta{padding:110px 0 90px}
@@ -272,5 +333,5 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
-  .float-slow{animation:none}
+  .float-slow,.float-slow .anno__fg{animation:none}
 }
