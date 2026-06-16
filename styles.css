@@ -198,6 +198,95 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .anno--cards{position:absolute;z-index:4;width:360px;bottom:95px;left:-30px}
 .anno--reading{position:absolute;z-index:3;width:384px;top:210px;right:-24px}
 
+/* ===================== STEPS (web/tablet: pinned cross-fade · mobile: stacked) ===================== */
+.steps{position:relative}
+/* scattered blurred sparkles drifting in the section background */
+.steps__bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.steps__spark{position:absolute;fill:#faf9f6}
+.ss-1{width:22px;top:7%;left:11%;filter:blur(2px);opacity:.32}
+.ss-2{width:13px;top:16%;right:13%;filter:blur(1.2px);opacity:.4}
+.ss-3{width:28px;top:30%;left:7%;filter:blur(3px);opacity:.26}
+.ss-4{width:16px;top:42%;right:9%;filter:blur(1.6px);opacity:.36}
+.ss-5{width:20px;top:55%;left:13%;filter:blur(2.4px);opacity:.3}
+.ss-6{width:12px;top:66%;right:15%;filter:blur(1.2px);opacity:.4}
+.ss-7{width:25px;top:78%;left:9%;filter:blur(2.6px);opacity:.28}
+.ss-8{width:14px;top:88%;right:12%;filter:blur(1.4px);opacity:.38}
+.ss-9{width:18px;top:95%;left:16%;filter:blur(2px);opacity:.3}
+
+/* tall track = scroll distance; the stage pins while the themes cross-fade in place */
+.steps__track{position:relative;z-index:1;height:360vh}
+.steps__stage{position:sticky;top:0;height:100vh;overflow:hidden}
+
+/* each theme (text + phone) is stacked on top of the others and cross-faded;
+   the new theme appears exactly as the old fades — both frozen (pinned) together */
+.theme{
+  position:absolute;top:0;bottom:0;left:0;right:0;
+  margin-inline:auto;max-width:var(--maxw);padding:0 clamp(48px,6vw,120px);
+  display:grid;grid-template-columns:1fr minmax(300px,360px);
+  gap:80px;align-items:center;
+  opacity:0;pointer-events:none;
+}
+/* web/tablet: JS drives opacity + the text conveyor directly from scroll, with a
+   "dwell" (scroll-in-place) on each theme before the conveyor moves to the next.
+   is-active is only the no-JS fallback. */
+.theme.is-active{opacity:1;pointer-events:auto}
+.theme__text{max-width:440px}
+.theme__phone{display:flex;justify-content:center}
+
+.step__eyebrow{
+  font-family:"Space Mono",monospace;text-transform:uppercase;
+  letter-spacing:.12em;font-size:clamp(15px,1vw,18px);color:var(--lilac);
+}
+.step__title{
+  font-size:clamp(34px,3vw,58px);font-weight:700;color:#fff;
+  letter-spacing:-.02em;margin:14px 0 18px;
+}
+.step__desc{color:var(--cream-dim);font-size:clamp(18px,1.45vw,23px);line-height:1.65}
+
+/* phone: outer box crops (used on mobile); inner holds the full frame + inside elements */
+.phone3{position:relative;width:clamp(300px,22vw,360px);max-width:100%;aspect-ratio:792/1617;overflow:hidden}
+.phone3__inner{position:relative;width:100%;aspect-ratio:792/1617}
+.phone3__bg{display:block;width:100%}
+
+/* elements placed INSIDE the phone (positioned as % of the full frame) */
+.phone3__el{position:absolute;left:50%;transform:translate(-50%,-50%)}
+.phone3__el--sphere{top:53%;width:74%}              /* +15% */
+.phone3__el--ram{top:29%;width:47%}                 /* +20% bigger, 20% lower, centred */
+
+/* sphere & bubble: scale + fade in when scrolled into view, then a tiny endless float.
+   (the sphere additionally gets a scroll-driven grow/shrink via JS on the wrapper) */
+.phone3__el--sphere img,
+.phone3__el--ram img{display:block;width:100%;opacity:0;transform:scale(.82)}
+.phone3__el--sphere.is-in img{
+  animation:sphereIn .9s var(--ease) forwards, sphereFloat 6s ease-in-out 1s infinite;
+}
+.phone3__el--ram.is-in img{
+  animation:bubbleIn .75s cubic-bezier(.34,1.35,.66,1) forwards, sphereFloat 6.5s ease-in-out .9s infinite;
+}
+@keyframes sphereIn{from{opacity:0;transform:scale(.82)}to{opacity:1;transform:scale(1)}}
+@keyframes sphereFloat{0%,100%{translate:0 0}50%{translate:0 -4%}}
+/* snappier "pop" entrance for the bubble — small → overshoot → settle */
+@keyframes bubbleIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+
+/* AI page: 3 cards, middle one raised (bottoms aligned, middle taller) */
+.ai-cards{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:78%;display:flex;justify-content:center;align-items:flex-end;gap:4%;
+}
+.ai-card{width:28%;perspective:900px}
+.ai-card--m{width:31%}
+/* each card flips on its Y axis to reveal the open card on the back face */
+.ai-card__inner{position:relative;width:100%;transform-style:preserve-3d;transition:transform .85s var(--ease)}
+.ai-card__face{display:block;width:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.ai-card__front{position:relative}
+.ai-card__back{position:absolute;inset:0;transform:rotateY(180deg)}
+/* flip when AI theme is reached (web/tablet: JS toggles .is-flipped) */
+.ai-cards.is-flipped .ai-card__inner{transform:rotateY(180deg)}
+/* stagger so the cards turn over one after another (left → middle → right) */
+.ai-card--l .ai-card__inner{transition-delay:0s}
+.ai-card--m .ai-card__inner{transition-delay:.16s}
+.ai-card--r .ai-card__inner{transition-delay:.32s}
+
 /* ===================== CTA / WAITLIST ===================== */
 .cta{
   padding:140px 0 130px;text-align:center;position:relative;
@@ -283,6 +372,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   .sp-2{right:24%}
   .sp-6{left:25%}
   .sp-5{right:15%}
+
+  /* steps: keep the pinned cross-fade, but larger side padding + smaller phone */
+  .theme{grid-template-columns:1fr minmax(240px,290px);gap:44px;padding:0 96px}
+  .phone3{width:280px}
 }
 
 /* PHONE ≤809 — centered hero (matches reference), waitlist link + burger in nav */
@@ -324,6 +417,32 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   .anno--cards{width:min(272px,72vw);bottom:2%;right:0;left:auto;translate:0 -15%}
   .anno--reading{display:none}
 
+  /* steps: NO animation. 3 stacked blocks — phone (cropped 30% at the bottom) then text */
+  .steps{padding-top:72px}          /* bigger gap after the 2nd section (showcase) */
+  .steps__track{height:auto}
+  .steps__stage{position:static;height:auto;overflow:visible}
+  .theme{
+    position:static;opacity:1;pointer-events:auto;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    gap:22px;max-width:none;padding:64px 20px;               /* bigger gap between sections */
+  }
+  .theme__phone{order:-1;width:100%;opacity:0;transition:opacity .6s var(--ease)} /* fade in on scroll */
+  .theme__phone.is-in{opacity:1}
+  .phone3{width:min(230px,62vw);aspect-ratio:792/1245}  /* crop ~23% (10% taller than before) */
+  /* text fades + slides up when it scrolls into view (JS adds .is-in) */
+  .theme__text{
+    max-width:360px;opacity:0;transform:translateY(26px);
+    transition:opacity .6s var(--ease),transform .6s var(--ease);
+  }
+  .theme__text.is-in{opacity:1;transform:none}
+  .ai-cards.is-in .ai-card__inner{transform:rotateY(180deg)} /* flip when scrolled into view */
+  .step__desc{max-width:340px;margin-inline:auto}
+
+  /* keep mobile text at its original (smaller) size — the +20% is web/tablet only */
+  .step__eyebrow{font-size:13px}
+  .step__title{font-size:clamp(28px,7.4vw,34px)}
+  .step__desc{font-size:15px}
+
   .cta{padding:110px 0 90px}
   .cta__form{flex-direction:column}
   .cta__form .btn{width:100%}
@@ -334,4 +453,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   html{scroll-behavior:auto}
   .reveal{opacity:1;transform:none;transition:none}
   .float-slow,.float-slow .anno__fg{animation:none}
+  .phone3__el--sphere img,.phone3__el--ram img{opacity:1;transform:none;animation:none}
+  .theme__text,.theme__phone{opacity:1;transform:none}
 }
