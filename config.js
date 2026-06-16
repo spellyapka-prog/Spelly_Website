@@ -8,9 +8,8 @@
 //  - The Google Analytics Measurement ID is meant to live in the page.
 
 window.SPELLY_CONFIG = {
-  // Supabase → Project Settings → Data API
-  //   Project URL,  e.g. https://abcdefghijklmnop.supabase.co
-  SUPABASE_URL: 'https://YOUR-PROJECT-REF.supabase.co',
-  //   anon / public key (a long string starting with "eyJ...")
-  SUPABASE_ANON_KEY: 'YOUR-ANON-PUBLIC-KEY',
+  // Supabase project URL (without the /rest/v1/ suffix)
+  SUPABASE_URL: 'https://zqdxwvtpbmvnewhjbruv.supabase.co',
+  // Supabase publishable (anon) key — safe in the browser, protected by RLS
+  SUPABASE_ANON_KEY: 'sb_publishable__ZmNyV2rUK_lceKgDT3wVw_cx1TKYw_',
 };
