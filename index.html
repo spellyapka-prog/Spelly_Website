@@ -84,13 +84,18 @@
         <svg class="spark sp-5" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
         <svg class="spark sp-6" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
         <svg class="spark sp-7" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-8" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-9" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-10" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-11" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        <svg class="spark sp-12" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
       </div>
 
       <div class="container hero__inner">
         <p class="eyebrow reveal">
           <span>AI TAROT SCANNING</span><i></i><span>COMING SOON</span>
         </p>
-        <h1 class="hero__title reveal" data-d="1">Your tarot cards,<br />read by AI</h1>
+        <h1 class="hero__title reveal" data-d="1">Your tarot cards, <br class="br-m" />read by AI</h1>
         <p class="hero__subtitle reveal" data-d="2">Ask. Scan. Read.</p>
         <a class="btn btn--primary btn--lg reveal" data-d="3" href="#waitlist">
           Join the waitlist
@@ -106,16 +111,25 @@
     <!-- ===================== SPREAD / FEATURE ===================== -->
     <section class="spread">
       <div class="container spread__inner">
-        <h2 class="spread__title reveal">Spelly reads the spread,<br class="br-d" /> not just the cards.</h2>
+        <h2 class="spread__title reveal">Spelly reads the spread, not just the<br class="br-d" /> cards.</h2>
         <p class="spread__text reveal" data-d="1">Spelly scans your real tarot cards, recognizes the spread, and turns it into a clear AI reading based on your question.</p>
       </div>
 
       <div class="container showcase">
         <div class="showcase__stage">
-          <!-- floating glass annotation cards (exported from Framer) -->
-          <img class="anno anno--question float-slow reveal" src="materials/Card_1_2.svg" alt="Your question — what is this teaching me?" />
-          <img class="anno anno--cards float-slow reveal" data-d="1" src="materials/card_3_2.svg" alt="Cards recognized — The Lovers, The Tower, The Star" />
-          <img class="anno anno--reading float-slow reveal" data-d="2" src="materials/Card_2_2.svg" alt="AI reading" />
+          <!-- floating annotation cards: glass background (_2) + content on top (_1) -->
+          <div class="anno anno--question float-slow reveal">
+            <span class="anno__glass" aria-hidden="true"></span>
+            <img class="anno__fg" src="materials/Card_1_1.png" alt="Your question — what is this teaching me?" />
+          </div>
+          <div class="anno anno--reading float-slow reveal" data-d="1">
+            <span class="anno__glass" aria-hidden="true"></span>
+            <img class="anno__fg" src="materials/Card_3_1.svg" alt="Cards recognized — The Lovers, The Tower, The Star" />
+          </div>
+          <div class="anno anno--cards float-slow reveal" data-d="2">
+            <span class="anno__glass" aria-hidden="true"></span>
+            <img class="anno__fg" src="materials/Card_2_1.svg" alt="AI reading" />
+          </div>
 
           <!-- phone: camera scanning a spread -->
           <div class="phone phone--showcase reveal">

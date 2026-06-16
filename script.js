@@ -20,6 +20,37 @@ const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 12);
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 
+// ===== Tarot cards parallax on scroll (subtle depth effect) =====
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const bgCards = document.querySelectorAll('.bg-card');
+
+if (bgCards.length && !prefersReducedMotion) {
+  // per-card vertical speed → varied depth so they drift up/down at different rates
+  const speeds = [0.14, -0.09, 0.2, 0.07, -0.13];
+
+  let ticking = false;
+  const updateCards = () => {
+    const y = window.scrollY;
+    bgCards.forEach((card, i) => {
+      const speed = speeds[i % speeds.length];
+      card.style.translate = `0 ${(y * speed).toFixed(1)}px`;
+    });
+    ticking = false;
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateCards);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  updateCards();
+}
+
 // ===== Scroll reveal (smooth, Framer-like) =====
 const reveals = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
