@@ -19,7 +19,12 @@
 ---
 
 ## 📝 Мої нотатки
-<!-- Пиши свої нотатки тут -->
+npm run dev
+```
+1. git checkout -b v01_1
+2. git add .
+3. git commit -m "update from v01_1"
+4. git push origin v01_1
 
 - 
 
@@ -29,3 +34,4 @@
 
 ## 💡 Ідеї
 - 
+

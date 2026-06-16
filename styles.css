@@ -186,6 +186,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .cta__form input::placeholder{color:var(--cream-dim)}
 .cta__form input:focus{outline:none;border-color:var(--purple-h);background:rgba(250,249,246,.13)}
 .cta__note{margin-top:18px;color:var(--lilac);font-size:14px}
+.cta__note--error{color:#ff8a8a}
 
 /* ===================== FOOTER ===================== */
 .footer{border-top:1px solid var(--line);padding:36px 0}
