@@ -189,6 +189,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .cta__note--error{color:#ff8a8a}
 
 /* ===================== COOKIE CONSENT ===================== */
+.cookie[hidden]{display:none}
 .cookie{
   position:fixed;left:16px;right:16px;bottom:16px;z-index:60;
   max-width:560px;margin-inline:auto;
