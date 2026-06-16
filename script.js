@@ -96,3 +96,37 @@ form?.addEventListener('submit', async (e) => {
     submitBtn.disabled = false;
   }
 });
+
+// ===== Cookie consent (Google Consent Mode v2) =====
+const cookieBanner = document.getElementById('cookieBanner');
+
+const setConsent = (granted) => {
+  try {
+    localStorage.setItem('spelly_consent', granted ? 'granted' : 'denied');
+  } catch (e) {}
+
+  if (typeof gtag === 'function') {
+    const state = granted ? 'granted' : 'denied';
+    gtag('consent', 'update', {
+      ad_storage: state,
+      ad_user_data: state,
+      ad_personalization: state,
+      analytics_storage: state,
+    });
+  }
+
+  if (cookieBanner) cookieBanner.hidden = true;
+};
+
+if (cookieBanner) {
+  let saved = null;
+  try {
+    saved = localStorage.getItem('spelly_consent');
+  } catch (e) {}
+
+  // Show the banner only if the visitor hasn't chosen yet.
+  if (!saved) cookieBanner.hidden = false;
+
+  document.getElementById('cookieAccept')?.addEventListener('click', () => setConsent(true));
+  document.getElementById('cookieDecline')?.addEventListener('click', () => setConsent(false));
+}
