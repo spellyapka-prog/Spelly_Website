@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spelly — Your tarot cards, read by AI</title>
-  <meta name="description" content="AI tarot readings from your real cards. Scan your spread, ask a question, and receive a clear interpretation powered by Spelly." />
+  <title>Spelly — AI Tarot Reading App | Scan Your Cards, Get a Reading</title>
+  <meta name="description" content="Spelly is an AI tarot reading app. Scan your real tarot cards or pull animated ones, ask a question, and get a clear, personal interpretation of your spread. Join the waitlist for early access." />
+  <link rel="canonical" href="https://spelly.site/" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0614" />
 
   <!-- icons -->
   <link rel="icon" type="image/png" href="materials/Logo%20icon%20for%20web.png" />
   <link rel="apple-touch-icon" href="materials/icon%20for%20google%20ads.png" />
 
   <!-- social / open graph -->
-  <meta property="og:title" content="Spelly — Your tarot cards, read by AI" />
-  <meta property="og:description" content="Ask. Scan. Read. AI tarot readings from your real cards." />
-  <meta property="og:image" content="materials/Splash%20screen.png" />
+  <meta property="og:title" content="Spelly — AI Tarot Reading App" />
+  <meta property="og:description" content="Scan your real tarot cards, ask a question, and get a clear AI reading of your spread. Ask. Scan. Read." />
+  <meta property="og:image" content="https://spelly.site/materials/Splash%20screen.png" />
+  <meta property="og:url" content="https://spelly.site/" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Spelly" />
+  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Spelly — AI Tarot Reading App" />
+  <meta name="twitter:description" content="Scan your real tarot cards, ask a question, and get a clear AI reading of your spread." />
+  <meta name="twitter:image" content="https://spelly.site/materials/Splash%20screen.png" />
 
   <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,6 +61,45 @@
   <script>
     gtag('js', new Date());
     gtag('config', 'G-XJ9HLSKZL2');
+  </script>
+
+  <!-- Structured data: tells Google what Spelly is (rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://spelly.site/#organization",
+        "name": "Spelly",
+        "url": "https://spelly.site/",
+        "logo": "https://spelly.site/materials/Logo%20icon%20for%20web.png",
+        "description": "Spelly is an AI tarot reading app that scans your real cards and turns your spread into a clear, personal interpretation."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://spelly.site/#website",
+        "url": "https://spelly.site/",
+        "name": "Spelly",
+        "publisher": { "@id": "https://spelly.site/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Spelly",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "iOS, Android",
+        "url": "https://spelly.site/",
+        "image": "https://spelly.site/materials/Splash%20screen.png",
+        "description": "AI tarot reading app. Scan your real tarot cards or pull animated ones, ask a question, and get a clear AI interpretation of your spread. Daily affirmations, AI card readings, and tarot learning guides.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
