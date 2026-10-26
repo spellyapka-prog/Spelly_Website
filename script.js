@@ -271,3 +271,134 @@ if (revealTargets.length && 'IntersectionObserver' in window && window.matchMedi
   );
   revealTargets.forEach((t) => revealIO.observe(t));
 }
+
+// ===== Support form (support.html) — emails via Web3Forms, backup copy in Supabase =====
+const supportForm = document.getElementById('supportForm');
+
+if (supportForm) {
+  const chips = supportForm.querySelectorAll('.chip');
+  const messageEl = document.getElementById('supportMessage');
+  const emailEl = document.getElementById('supportEmail');
+  const sendBtn = document.getElementById('supportSend');
+  const errorEl = document.getElementById('supportError');
+  const sentCard = document.getElementById('supportSent');
+  const sentEmail = document.getElementById('sentEmail');
+  const botcheck = document.getElementById('supportBotcheck');
+  let topic = 'Readings';
+
+  chips.forEach((chip) =>
+    chip.addEventListener('click', () => {
+      topic = chip.dataset.topic;
+      chips.forEach((c) => {
+        const on = c === chip;
+        c.classList.toggle('is-selected', on);
+        c.setAttribute('aria-checked', String(on));
+      });
+    })
+  );
+
+  const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const validate = () => {
+    sendBtn.disabled = !(messageEl.value.trim() && emailOk(emailEl.value.trim()));
+  };
+  messageEl.addEventListener('input', validate);
+  emailEl.addEventListener('input', validate);
+  validate();
+
+  const showError = (text) => {
+    errorEl.textContent = text;
+    errorEl.hidden = false;
+  };
+
+  // 1) Email to the support inbox (Web3Forms). This is the one that must succeed.
+  const sendEmail = async (cfg, { topic, message, email }) => {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: cfg.WEB3FORMS_KEY,
+        subject: `[Spelly Support] ${topic} — ${email}`,
+        from_name: 'Spelly website',
+        replyto: email,       // "Reply" in the inbox goes straight to the visitor
+        email,
+        topic,
+        message,
+        page: location.href,
+        locale: navigator.language || '',
+        user_agent: navigator.userAgent,
+        botcheck: botcheck ? botcheck.checked : false,
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.success) throw new Error(data.message || `Web3Forms ${res.status}`);
+  };
+
+  // 2) Backup copy in Supabase (best effort — never blocks the user).
+  const saveCopy = async (cfg, { topic, message, email }) => {
+    if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) return;
+    try {
+      await fetch(`${cfg.SUPABASE_URL}/rest/v1/support_messages`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          apikey: cfg.SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${cfg.SUPABASE_ANON_KEY}`,
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify({
+          topic,
+          message,
+          email,
+          source: 'web',
+          user_agent: navigator.userAgent,
+          locale: navigator.language || null,
+          referrer: document.referrer || null,
+        }),
+      });
+    } catch (err) {
+      console.warn('Supabase backup copy failed:', err);
+    }
+  };
+
+  supportForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (sendBtn.disabled) return;
+
+    const cfg = window.SPELLY_CONFIG || {};
+    const payload = { topic, message: messageEl.value.trim(), email: emailEl.value.trim() };
+    errorEl.hidden = true;
+
+    if (!cfg.WEB3FORMS_KEY) {
+      showError('Sending is not configured yet. Please email us instead.');
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.classList.add('is-sending');
+    sendBtn.firstChild.textContent = 'Sending… ';
+
+    try {
+      await sendEmail(cfg, payload);
+      saveCopy(cfg, payload); // fire and forget
+      sentEmail.textContent = payload.email;
+      supportForm.hidden = true;
+      sentCard.hidden = false;
+      sentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      console.error('Support send failed:', err);
+      showError("Couldn't send. Check your connection and try again.");
+    } finally {
+      sendBtn.classList.remove('is-sending');
+      sendBtn.firstChild.textContent = 'Send message ';
+      validate();
+    }
+  });
+
+  document.getElementById('supportReset')?.addEventListener('click', () => {
+    messageEl.value = '';
+    sentCard.hidden = true;
+    supportForm.hidden = false;
+    validate();
+    messageEl.focus();
+  });
+}

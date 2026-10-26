@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Spelly</title>
+  <meta name="description" content="Something not working or have a question about Spelly? Write to us — a real person will reply within 24 hours." />
+  <link rel="canonical" href="https://spelly.site/support.html" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#442A69" />
+
+  <!-- icons -->
+  <link rel="icon" type="image/png" href="materials/Logo%20icon%20for%20web.png" />
+  <link rel="apple-touch-icon" href="materials/icon%20for%20google%20ads.png" />
+
+  <!-- social / open graph -->
+  <meta property="og:title" content="Support — Spelly" />
+  <meta property="og:description" content="Write to us — a real person will reply within 24 hours." />
+  <meta property="og:image" content="https://spelly.site/materials/Splash%20screen.png" />
+  <meta property="og:url" content="https://spelly.site/support.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Spelly" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Analytics 4 + Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('spelly_consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+    } catch (e) {}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJ9HLSKZL2"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-XJ9HLSKZL2');
+  </script>
+</head>
+<body class="page-support">
+  <!-- ===================== NAVBAR (shared) ===================== -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="index.html" aria-label="Spelly home">
+        <img src="materials/logo.svg" alt="Spelly" />
+      </a>
+    </div>
+  </header>
+
+  <main class="support">
+    <!-- decor: radial glow + sparkles -->
+    <div class="support__decor" aria-hidden="true">
+      <div class="support__glow"></div>
+      <svg class="spark ssp-1" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+      <svg class="spark ssp-2" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+      <svg class="spark ssp-3" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+      <svg class="spark ssp-4" viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+    </div>
+
+    <div class="support__wrap">
+      <!-- ===================== INTRO ===================== -->
+      <div class="support__head">
+        <p class="eyebrow reveal"><span>Support</span><i></i><span>We reply in 24h</span></p>
+        <h1 class="support__title reveal" data-d="1">How can we help?</h1>
+        <p class="support__lead reveal" data-d="2">Something not working or have a question about Spelly? Write to us — a real person will reply.</p>
+      </div>
+
+      <!-- ===================== FORM CARD ===================== -->
+      <form class="glass support__form reveal" data-d="3" id="supportForm" novalidate>
+        <div class="sfield">
+          <span class="sfield__label" id="topicLabel">What's it about?</span>
+          <div class="chips" role="radiogroup" aria-labelledby="topicLabel" id="topicChips">
+            <button type="button" class="chip" role="radio" aria-checked="false" data-topic="Account">Account</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-topic="Subscription">Subscription</button>
+            <button type="button" class="chip is-selected" role="radio" aria-checked="true" data-topic="Readings">Readings</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-topic="Bug">Bug</button>
+            <button type="button" class="chip" role="radio" aria-checked="false" data-topic="Other">Other</button>
+          </div>
+        </div>
+
+        <div class="sfield">
+          <label class="sfield__label" for="supportMessage">Your message</label>
+          <textarea class="sfield__textarea" id="supportMessage" name="message" rows="6" placeholder="Describe what happened…" required></textarea>
+        </div>
+
+        <div class="sfield">
+          <label class="sfield__label" for="supportEmail">Your email</label>
+          <input class="sfield__input" id="supportEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Enter your email" required />
+        </div>
+
+        <input type="checkbox" id="supportBotcheck" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <button type="submit" class="btn btn--primary sbtn" id="supportSend" disabled>
+          Send message
+          <svg class="ico-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        </button>
+        <p class="support__error" id="supportError" hidden>Couldn't send. Check your connection and try again.</p>
+      </form>
+
+      <!-- ===================== SENT STATE ===================== -->
+      <div class="glass glass--sent" id="supportSent" hidden>
+        <div class="sent__badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2c.4 5.1 4.5 9.2 9.6 9.6v.8C16.5 12.8 12.4 16.9 12 22h-.8C10.8 16.9 6.7 12.8 1.6 12.4v-.8C6.7 11.2 10.8 7.1 11.2 2h.8z"/></svg>
+        </div>
+        <h2 class="sent__title">Message sent</h2>
+        <p class="sent__text">We'll reply to <span class="sent__email" id="sentEmail"></span> within 24 hours.</p>
+        <button type="button" class="sbtn--ghost" id="supportReset">Send another</button>
+      </div>
+
+      <!-- ===================== INFO CARDS ===================== -->
+      <div class="support__info reveal" data-d="4">
+        <div class="glass icard">
+          <div class="icard__label">Email</div>
+          <a class="icard__link" href="mailto:support@spelly.site">support@spelly.site</a>
+        </div>
+        <div class="glass icard">
+          <div class="icard__label">Subscriptions</div>
+          <p class="icard__text">Cancel or manage in iPhone Settings → your name → Subscriptions.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== COOKIE CONSENT ===================== -->
+  <div class="cookie" id="cookieBanner" hidden role="dialog" aria-label="Cookie consent">
+    <p class="cookie__text">We use analytics cookies to understand how visitors use Spelly. You can accept or decline.</p>
+    <div class="cookie__actions">
+      <button class="cookie__btn cookie__btn--ghost" id="cookieDecline">Decline</button>
+      <button class="btn btn--primary cookie__btn" id="cookieAccept">Accept</button>
+    </div>
+  </div>
+
+  <!-- ===================== FOOTER (shared) ===================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="footer__logo" href="index.html" aria-label="Spelly"><img src="materials/logo.svg" alt="Spelly" /></a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="support.html" aria-current="page">Support</a>
+      </nav>
+      <p class="footer__copy">© 2026 Spelly. Ask. Scan. Read.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

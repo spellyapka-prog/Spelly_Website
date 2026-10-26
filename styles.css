@@ -456,3 +456,108 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   .phone3__el--sphere img,.phone3__el--ram img{opacity:1;transform:none;animation:none}
   .theme__text,.theme__phone{opacity:1;transform:none}
 }
+
+/* ===================== SUPPORT PAGE ===================== */
+/* dark site bg + shared nav/footer; glass cards (from the Support Web design) */
+.page-support{display:flex;flex-direction:column;min-height:100vh}
+.page-support .support{flex:1;position:relative;overflow:hidden;padding:72px 0 96px}
+.support__decor{position:absolute;inset:0;z-index:0;pointer-events:none}
+.support__glow{
+  position:absolute;left:50%;top:420px;width:1200px;height:900px;margin-left:-600px;
+  background:radial-gradient(closest-side,rgba(110,72,190,.45),rgba(110,72,190,0));
+}
+.ssp-1{width:34px;top:560px;left:calc(50% - 560px)}
+.ssp-2{width:14px;top:320px;left:calc(50% - 300px);opacity:.6}
+.ssp-3{width:22px;top:360px;right:calc(50% - 460px);opacity:.7}
+.ssp-4{width:28px;top:720px;right:calc(50% - 640px)}
+
+.support__wrap{position:relative;z-index:1;width:100%;max-width:640px;margin-inline:auto;padding-inline:16px}
+.support__head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.support__head .eyebrow{margin-bottom:22px}
+.support__title{
+  font-size:clamp(40px,7vw,64px);font-weight:600;letter-spacing:-.035em;
+  line-height:1.05;color:#fff;text-wrap:balance;
+}
+.support__lead{font-size:19px;line-height:1.5;color:#C2B2F0;margin-top:16px;max-width:460px;text-wrap:pretty}
+
+/* ---------- glass cards ---------- */
+.glass{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:28px;padding:28px;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+.glass[hidden]{display:none}
+.support__form{margin-top:44px;display:flex;flex-direction:column;gap:22px}
+.glass--sent{margin-top:44px;padding:44px 28px;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+.sfield{display:flex;flex-direction:column;gap:10px}
+.sfield__label{font-size:14px;font-weight:600;color:#fff}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  padding:9px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.22);
+  color:#fff;font-size:14px;font-weight:500;background:transparent;
+  transition:border-color .15s ease, background .15s ease;
+}
+.chip:hover{border-color:#B9A6E8}
+.chip.is-selected{background:#7B5CF5;border-color:#7B5CF5;font-weight:600}
+
+.sfield__textarea,.sfield__input{
+  width:100%;font-family:inherit;font-size:16px;color:#fff;
+  border:1.5px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);outline:none;
+  transition:border-color .15s ease, background .15s ease;
+}
+.sfield__textarea{border-radius:18px;padding:14px 16px;line-height:1.5;resize:vertical;min-height:120px}
+.sfield__input{height:54px;border-radius:999px;padding:0 22px}
+.sfield__textarea::placeholder,.sfield__input::placeholder{color:rgba(255,255,255,.45)}
+.sfield__textarea:focus,.sfield__input:focus{border-color:#B9A6E8;background:rgba(255,255,255,.12)}
+
+.sbtn{height:58px;gap:12px;font-size:17px;padding:0 24px}
+.sbtn .ico-star{width:20px;height:20px}
+.sbtn:hover{background:#8668FF}
+.sbtn:disabled{background:rgba(123,92,245,.4);color:rgba(255,255,255,.6);transform:none;box-shadow:none;cursor:not-allowed}
+.sbtn.is-sending{cursor:progress}
+.sbtn--ghost{
+  margin-top:26px;padding:0 26px;height:50px;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.3);color:#fff;font-size:15px;font-weight:600;
+  transition:border-color .15s ease;
+}
+.sbtn--ghost:hover{border-color:#fff}
+
+.support__error{font-size:14px;color:#ff8a8a;margin-top:-10px}
+.support__error[hidden]{display:none}
+
+.sent__badge{width:64px;height:64px;border-radius:50%;background:#7B5CF5;display:grid;place-items:center}
+.sent__badge svg{width:28px;height:28px;fill:#fff}
+.sent__title{font-size:26px;font-weight:600;letter-spacing:-.02em;margin-top:20px;color:#fff}
+.sent__text{font-size:17px;line-height:1.5;color:#C2B2F0;margin-top:8px;max-width:340px;text-wrap:pretty}
+.sent__email{color:#fff;font-weight:600}
+
+.support__info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:16px}
+.icard{border-radius:22px;padding:22px}
+.icard__label{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#B9A6E8}
+.icard__link{display:block;font-size:18px;font-weight:600;color:#fff;margin-top:10px;transition:color .2s ease}
+.icard__link:hover{color:#C9B8FF}
+.icard__text{font-size:15px;line-height:1.5;color:#E4DBFF;margin-top:10px;text-wrap:pretty}
+
+/* ---------- footer links (shared, all pages) ---------- */
+.footer__links{display:flex;gap:20px;font-size:14px;color:#C2B2F0}
+.footer__links a{transition:color .2s ease}
+.footer__links a:hover,.footer__links a[aria-current="page"]{color:#fff}
+
+/* ---------- legal pages (privacy) ---------- */
+.legal{padding:48px 0 96px;max-width:720px;margin-inline:auto}
+.legal h1{font-size:clamp(32px,4.6vw,44px);font-weight:700;letter-spacing:-.02em;color:#fff}
+.legal p{margin-top:18px;color:var(--cream-dim);font-size:16px;line-height:1.7}
+.legal a{color:var(--purple-h)}
+
+@media (max-width:809px){
+  .page-support .support{padding:40px 0 72px}
+  .support__lead{font-size:16px}
+  .glass{padding:22px}
+  .support__form,.glass--sent{margin-top:32px}
+  .ssp-1,.ssp-4{display:none}
+  .footer__links{justify-content:center}
+}
+
+.hp{position:absolute;left:-9999px;opacity:0;pointer-events:none}

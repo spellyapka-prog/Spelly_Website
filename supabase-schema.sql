@@ -26,3 +26,30 @@ create policy "anon can insert waitlist signups"
   for insert
   to anon
   with check (true);
+
+-- ============================================================
+--  Support messages (support.html)
+--  Run this once in:  Supabase dashboard → SQL Editor → New query
+-- ============================================================
+create table if not exists public.support_messages (
+  id          bigint generated always as identity primary key,
+  created_at  timestamptz not null default now(),
+  topic       text not null,              -- Account / Subscription / Readings / Bug / Other
+  message     text not null,
+  email       text not null,
+  source      text,                       -- 'web'
+  user_agent  text,
+  locale      text,
+  referrer    text,
+  handled     boolean not null default false   -- tick it in the Table Editor once replied
+);
+
+alter table public.support_messages enable row level security;
+
+-- anon can only INSERT — nobody can read messages from the browser.
+drop policy if exists "anon can send support messages" on public.support_messages;
+create policy "anon can send support messages"
+  on public.support_messages
+  for insert
+  to anon
+  with check (true);
