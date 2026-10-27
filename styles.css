@@ -544,15 +544,62 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .footer__links{display:flex;gap:20px;font-size:14px;color:#C2B2F0}
 .footer__links a{transition:color .2s ease}
 .footer__links a:hover,.footer__links a[aria-current="page"]{color:#fff}
+.footer__links{align-items:center}
+.footer__support{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 14px 9px 16px;border-radius:999px;
+  font-weight:600;color:#fff;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:background .2s ease,border-color .2s ease,transform .18s var(--ease),box-shadow .2s ease;
+}
+.footer__support .arrow{width:15px;height:15px;flex:none;transition:transform .2s ease}
+.footer__support:hover{
+  background:var(--purple);border-color:var(--purple);transform:translateY(-1px);
+  box-shadow:0 12px 28px -10px rgba(124,92,245,.8);
+}
+.footer__support:hover .arrow{transform:translateX(3px)}
 
-/* ---------- legal pages (privacy) ---------- */
-.legal{padding:48px 0 96px;max-width:720px;margin-inline:auto}
-.legal h1{font-size:clamp(32px,4.6vw,44px);font-weight:700;letter-spacing:-.02em;color:#fff}
-.legal p{margin-top:18px;color:var(--cream-dim);font-size:16px;line-height:1.7}
-.legal a{color:var(--purple-h)}
+/* ---------- privacy policy (from the Privacy Policy design; site nav/footer kept) ---------- */
+.page-policy .policy{padding:calc(var(--nav-h) + 56px) 0 0}
+.page-policy .support__glow{top:380px}
+.page-policy .ssp-1{top:300px}
+.page-policy .ssp-2{top:170px;left:calc(50% - 320px)}
+.page-policy .ssp-3{top:220px;right:calc(50% - 470px)}
+.page-policy .ssp-4{top:520px}
+.policy__wrap{position:relative;z-index:1;max-width:1240px}
+.policy__head{display:flex;flex-direction:column;align-items:center;text-align:center}
+.policy__title{
+  font-size:clamp(40px,7vw,76px);font-weight:600;letter-spacing:-.035em;
+  line-height:1.05;color:#fff;text-wrap:balance;
+}
+.policy__updated{
+  font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;color:#B9A6E8;margin-top:18px;
+}
+.policy__intro{font-size:19px;line-height:1.55;color:#C2B2F0;margin-top:20px;max-width:720px;text-wrap:pretty}
+.policy__sections{margin-top:56px;padding-bottom:96px}
+.policy__section{scroll-margin-top:calc(var(--nav-h) + 24px);padding-top:32px}
+.policy__section + .policy__section{margin-top:40px;border-top:1px solid rgba(255,255,255,.1)}
+.policy__num{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.2em;color:#B9A6E8}
+.policy__section h2{font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-top:8px;color:#fff;text-wrap:balance}
+.policy__body{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.policy__body h3{font-size:17px;font-weight:600;line-height:1.35;margin-top:14px;color:#fff}
+.policy__body p{font-size:17px;line-height:1.7;color:#E4DBFF;text-wrap:pretty}
+.policy__body strong{color:#fff;font-weight:600}
+.policy__body a{color:#C9B8FF;font-weight:600;transition:color .2s ease}
+.policy__body a:hover{color:#fff}
+.policy__list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.policy__list li{display:flex;gap:12px;align-items:flex-start;font-size:17px;line-height:1.6;color:#E4DBFF}
+.policy__list svg{width:12px;height:12px;fill:#B9A6E8;flex:none;margin-top:7px}
 
 @media (max-width:809px){
   .page-support .support{padding:40px 0 72px}
+  .page-policy .policy{padding:calc(var(--nav-h) + 32px) 0 0}
+  .policy__sections{margin-top:40px;padding-bottom:64px}
+  .policy__section h2{font-size:24px}
+  .policy__body p,.policy__list li,.policy__body h3{font-size:16px}
+  .policy__intro{font-size:17px}
   .support__lead{font-size:16px}
   .glass{padding:22px}
   .support__form,.glass--sent{margin-top:32px}
